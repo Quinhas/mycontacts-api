@@ -1,3 +1,4 @@
+const { response } = require('express');
 const ContactsRepository = require('../repositories/ContactsRepository');
 
 class ContactController {
@@ -19,8 +20,26 @@ class ContactController {
     res.json(contact);
   }
 
-  store() {
-    // Criar novo registro
+  async store(req, res) {
+    const {
+      name, email, phone, category_id,
+    } = req.body;
+
+    if (!name) {
+      return res.status(400).send({ error: 'Name is required' });
+    }
+
+    const contactExists = await ContactsRepository.findByEmail(email);
+
+    if (contactExists) {
+      return res.status(400).send({ error: 'This e-mail is already in use.' });
+    }
+
+    const contact = await ContactsRepository.create({
+      name, email, phone, category_id,
+    });
+
+    response.json(contact);
   }
 
   update() {
