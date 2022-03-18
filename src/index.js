@@ -1,11 +1,10 @@
 const express = require('express');
 
+const routes = require('./routes');
+
 const PORT = 3000;
 
 const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(routes);
 
 app.listen(PORT, () => console.log(`[server] Server started at http://localhost:${PORT}`));
