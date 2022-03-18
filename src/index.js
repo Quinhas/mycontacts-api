@@ -5,7 +5,7 @@ require('express-async-errors');
 
 const routes = require('./routes');
 
-const PORT = 3000;
+const PORT = 3001;
 
 const app = express();
 
