@@ -1,4 +1,3 @@
-const { response } = require('express');
 const CategoriesRepository = require('../repositories/CategoriesRepository');
 
 class CategoryController {
@@ -40,7 +39,7 @@ class CategoryController {
       name,
     });
 
-    response.json(category);
+    res.status(201).json(category);
   }
 
   async update(req, res) {
@@ -69,7 +68,7 @@ class CategoryController {
       name,
     });
 
-    response.json(contact);
+    res.json(contact);
   }
 
   async delete(req, res) {
